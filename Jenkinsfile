@@ -17,9 +17,11 @@ pipeline {
             }
         }
         stage ('Checkout SCM') {
+            steps {
             git credentialsId: 'github', 
             url: 'https://github.com/formycore/argocd_demo.git',
             branch: 'master'
+            }
         }
     }
 }
