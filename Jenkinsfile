@@ -23,5 +23,37 @@ pipeline {
             branch: 'master'
             }
         }
+        stage ('Build docker image'){
+            steps {
+                script {
+                    // using the groovy functions docker.build, so this will take the dockerfile
+                    // from the current directory and build it
+                    // we already have image_name variable
+                    docker_image = docker.build "${IMAGE_NAME} ."
+                    // docker build image_name .
+
+
+                }
+            }
+        }
+        stage ('Push the docker image'){
+            steps {
+                script {
+                    // withRegistry and push or functions  
+                    docker.withRegistry ('', REGISTRY_CREDS){
+                        docker_image.push("${BUILD_NUMBER}")
+                        docker_image.push('latest')
+                    }
+                }
+            }
+        }
+        stage ('Delete docker images locally'){
+            steps {
+                script {
+                    docker rmi ${IMAGE_NAME}:${IMAGE_TAG}
+                    docker rmi ${IMAGE_NAME}:latest
+                }
+            }
+        }
     }
 }
