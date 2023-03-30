@@ -49,10 +49,10 @@ pipeline {
         }
         stage ('Delete docker images locally'){
             steps {
-                script {
-                    docker rmi ${IMAGE_NAME}:${IMAGE_TAG}
-                    docker rmi ${IMAGE_NAME}:latest
-                }
+                
+                sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+                sh "docker rmi ${IMAGE_NAME}:latest"
+                
             }
         }
     }
