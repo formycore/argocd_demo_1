@@ -1,0 +1,3 @@
+here we are adding the deployment.yml file then we face some issues and it is not the gitops 
+way to add the deployment.yml to the same repository
+docker pull formycore/gitops-demo-app:11
