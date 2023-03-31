@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flask-app-container
-        image: formycore/gitops-demo-app:15
+        image: formycore/gitops-demo-app:16
         ports:
         - containerPort: 5000
 ---
