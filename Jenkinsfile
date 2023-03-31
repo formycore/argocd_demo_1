@@ -73,10 +73,10 @@ pipeline {
                         git config --global user.name "sandeep"
                         git config --global user.eamil "formycore@gmail.com"
                         git add deployment.yml
-                        git commit -m 'Updated the deployment file'"""
+                        git commit -m 'Updated the deployment file' """
 // pushing to git repo we need user name and password
             withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                sh "http://$user:$pass@github.com/formycore/argocd_demo.git master"
+                sh "git push http://$user:$pass@github.com/formycore/argocd_demo.git master"
 }
 
                 }
